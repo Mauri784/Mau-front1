@@ -26,41 +26,40 @@ export class HistorialComponent implements OnInit {
     this.loadHistory();
   }
 
-  /** 📂 Carga el index.json con los nombres de los CSV */
-  async loadHistory() {
-    try {
-      // 📍 Nueva ruta adaptada
-      const response = await fetch('WeatheriaBackend/weatheria/history/index.json');
-      const data = await response.json();
+async loadHistory() {
+  try {
+    const response = await fetch(
+      'https://weatheriadx-default-rtdb.firebaseio.com/csv_history.json'
+    );
 
-      if (!data.files || !Array.isArray(data.files)) {
-        console.error('index.json no contiene una lista válida de archivos.');
-        return;
-      }
+    const data = await response.json();
 
-      // 🗓️ Procesar los archivos CSV listados en el JSON
-      this.dayRecords = data.files
-        .filter((f: string) => f.endsWith('.csv'))
-        .map((filename: string, i: number) => {
-          const date = this.parseDateFromFilename(filename);
-          return {
-            id: i + 1,
-            date: this.formatDateToSpanish(date),
-            fullDate: date,
-            filename
-          };
-        })
-        .sort((a: any, b: any) => b.fullDate.getTime() - a.fullDate.getTime());
-
-      if (this.dayRecords.length > 0) {
-        this.currentMonth = this.dayRecords[0].fullDate.toLocaleString('es-ES', { month: 'long' });
-        this.currentMonth =
-          this.currentMonth.charAt(0).toUpperCase() + this.currentMonth.slice(1);
-      }
-    } catch (err) {
-      console.error('Error al cargar index.json:', err);
+    if (!data) {
+      console.error('No hay historial disponible.');
+      return;
     }
+
+    this.dayRecords = Object.keys(data).map((dateStr, i) => {
+      const date = new Date(dateStr);
+      return {
+        id: i + 1,
+        date: this.formatDateToSpanish(date),
+        fullDate: date,
+        filename: dateStr
+      };
+    }).sort((a, b) => b.fullDate.getTime() - a.fullDate.getTime());
+
+    if (this.dayRecords.length > 0) {
+      this.currentMonth = this.dayRecords[0].fullDate.toLocaleString('es-ES', { month: 'long' });
+      this.currentMonth =
+        this.currentMonth.charAt(0).toUpperCase() + this.currentMonth.slice(1);
+    }
+
+  } catch (err) {
+    console.error('Error al cargar historial:', err);
   }
+}
+
 
   /** 🧩 Convierte un nombre tipo 2025-11-10.csv a objeto Date */
   parseDateFromFilename(filename: string): Date {
@@ -79,21 +78,54 @@ export class HistorialComponent implements OnInit {
     });
   }
 
-  /** 🔙 Vuelve al dashboard */
   goBack() {
     this.router.navigate(['/dashboard']);
   }
 
-  /** ⬇️ Descarga el CSV del día seleccionado */
-  viewDayDetail(day: DayRecord) {
-    const url = `WeatheriaBackend/weatheria/history/${day.filename}`;
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = day.filename;
-    link.click();
+async viewDayDetail(day: DayRecord) {
+  try {
+    const url = `https://weatheriadx-default-rtdb.firebaseio.com/csv_history/${day.filename}.json`;
 
-    console.log('Descargando:', day.filename);
+    const response = await fetch(url);
+    const data = await response.json(); 
+
+    if (!data || !Array.isArray(data)) {
+      console.error('El archivo no contiene datos válidos.');
+      return;
+    }
+
+    const headers = Object.keys(data[0]);
+    const csvRows = [];
+
+    csvRows.push(headers.join(','));
+
+    for (const row of data) {
+      const values = headers.map(h => `"${row[h] ?? ''}"`);
+      csvRows.push(values.join(','));
+    }
+
+    const csvText = csvRows.join('\n');
+
+    const blob = new Blob([csvText], { type: 'text/csv;charset=utf-8;' });
+    const downloadUrl = window.URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = downloadUrl;
+    a.download = `${day.filename}.csv`;
+    a.style.display = 'none';
+
+    document.body.appendChild(a);
+    a.click();
+
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(downloadUrl);
+
+  } catch (error) {
+    console.error('Error al descargar CSV:', error);
   }
+}
+
+
 
   logout() {
   localStorage.removeItem('token');
