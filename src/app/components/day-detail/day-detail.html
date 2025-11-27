@@ -1,0 +1,54 @@
+<div class="day-detail-container">
+  <!-- Header -->
+  <header class="header">
+    <button class="back-button" (click)="goBack()">
+      <span class="back-icon">‹</span>
+    </button>
+    <h1 class="header-title">Registro de días anteriores</h1>
+  </header>
+
+  <!-- Content -->
+  <div class="content">
+    <!-- Selected Date -->
+    <div class="date-header">
+      <h2 class="date-title">{{ selectedDate }}</h2>
+    </div>
+
+    <!-- Weather Cards -->
+    <div class="weather-cards">
+      <div 
+        *ngFor="let card of weatherCards" 
+        class="weather-card"
+        [style.border-left-color]="card.color">
+        <div class="card-header">
+          <span class="card-icon">{{ card.icon }}</span>
+          <h3 class="card-title">{{ card.title }}</h3>
+        </div>
+        <div class="card-details" *ngIf="card.details.length > 0">
+          <p *ngFor="let detail of card.details" class="detail-text">
+            {{ detail }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Datos Generales Section -->
+    <section class="general-data-section">
+      <h2 class="section-title">Datos Generales 📋</h2>
+      <div class="data-table">
+        <div 
+          *ngFor="let item of generalData; let i = index" 
+          class="data-row"
+          [class.blue-row]="i % 2 === 0">
+          <span class="data-label">{{ item.label }}</span>
+          <span class="data-value">{{ item.value }}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download Button -->
+    <button class="download-button" (click)="downloadData()">
+      <span class="download-icon">⬇️</span>
+    </button>
+  </div>
+</div>

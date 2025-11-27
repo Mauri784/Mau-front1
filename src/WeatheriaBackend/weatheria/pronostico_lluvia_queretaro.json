@@ -1,0 +1,20 @@
+[
+    {
+        "fecha": "2025-11-25",
+        "condicion": "Partly Cloudy ",
+        "prob_lluvia_api": 0,
+        "llovera_modelo": false
+    },
+    {
+        "fecha": "2025-11-26",
+        "condicion": "Overcast ",
+        "prob_lluvia_api": 0,
+        "llovera_modelo": false
+    },
+    {
+        "fecha": "2025-11-27",
+        "condicion": "Cloudy ",
+        "prob_lluvia_api": 0,
+        "llovera_modelo": false
+    }
+]

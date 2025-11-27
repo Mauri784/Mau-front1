@@ -1,0 +1,31 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/494/494435.png" alt="Cloud Logo" class="cloud-logo">
+    </div>
+    <h1 class="title">Weatheria</h1>
+    <form (ngSubmit)="iniciarSesion()" class="login-form">
+      <div class="input-group">
+        <input 
+          type="text" 
+          [(ngModel)]="usuario" 
+          name="usuario"
+          placeholder="Usuario"
+          class="input-field"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <input 
+          type="password" 
+          [(ngModel)]="contrasena" 
+          name="contrasena"
+          placeholder="Contraseña"
+          class="input-field"
+          required
+        />
+      </div>
+      <button type="submit" class="login-button">Iniciar Sesión</button>
+    </form>
+  </div>
+</div>

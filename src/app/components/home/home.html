@@ -1,0 +1,58 @@
+<div class="home-container" [ngClass]="'weather-' + currentWeatherState">
+  <!-- Header con menú hamburguesa -->
+  <header class="header">
+    <button class="menu-button" (click)="toggleMenu()">
+      <span class="hamburger-icon">☰</span>
+    </button>
+    <h1 class="app-title">Weatheria</h1>
+  </header>
+
+  <!-- Menú desplegable -->
+  <div class="dev-menu" *ngIf="showMenu">
+    <button (click)="goToLogin()" class="dev-menu-item">
+      Iniciar sesión
+    </button>
+    <button (click)="goToMapa()" class="dev-menu-item">
+      Ver Mapa
+    </button>
+  </div>
+
+  <!-- Ubicación -->
+  <p class="location">{{ location }}</p>
+
+  <!-- Card principal del clima -->
+  <div class="main-weather-card">
+    <div class="weather-info">
+      <p class="date">{{ currentDate }}</p>
+      <p class="temperature">{{ currentTemp }}</p>
+    </div>
+    <div class="weather-icon-large">
+      <span class="icon-emoji">{{ mainIcon }}</span>
+    </div>
+  </div>
+
+  <!-- Descripción del clima -->
+  <div class="weather-description">
+    <span class="description-icon">☂️</span>
+    <p class="description-text">{{ currentDescription }}</p>
+  </div>
+
+  <!-- Pronóstico por días -->
+<div class="hourly-forecast">
+  <div 
+    *ngFor="let day of hourlyForecast; let i = index" 
+    class="hour-item"
+    [class.highlighted]="i === 0">
+    <p class="hour-time">{{ day.day }}</p>
+    <span class="hour-icon">{{ day.icon }}</span>
+    <p class="hour-temp">{{ day.temp }}</p>
+  </div>
+</div>
+
+
+  <!-- Botón de reporte de inundación -->
+  <button class="report-button" (click)="goToMapa()">
+    <span class="report-icon">🚨</span>
+    <span class="report-text">Reportar inundación y marcar ubicación</span>
+  </button>
+</div>

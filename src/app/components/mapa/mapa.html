@@ -1,0 +1,57 @@
+<div class="mapa-container">
+  <!-- Header -->
+  <header class="header">
+    <button class="back-button" (click)="goBack()" aria-label="Regresar a Home">
+      <span class="back-icon">‹</span>
+    </button>
+    <h1 class="header-title">Mapa</h1>
+  </header>
+
+  <!-- Content -->
+  <div class="content">
+    <!-- Title Section -->
+    <div class="title-section">
+      <h2 class="section-title">Visualización ubicación de siniestros</h2>
+    </div>
+
+    <!-- Map Container -->
+    <div class="map-wrapper">
+
+      <!-- Mapa real de Google -->
+      <google-map 
+        height="500px" 
+        width="100%" 
+        [center]="center" 
+        [zoom]="zoomLevel"
+        (mapClick)="onMapClick($event)">
+
+        <!-- ✅ Marcadores sin trackBy ni eventos extra -->
+        <map-marker 
+          *ngFor="let marker of markers"
+          [position]="{ lat: marker.lat, lng: marker.lng }"
+          [title]="marker.title"
+          [icon]="marker.icon">
+        </map-marker>
+
+      </google-map>
+
+      <!-- Zoom Controls -->
+      <div class="zoom-controls">
+        <button class="zoom-button zoom-in" (click)="zoomIn()" aria-label="Acercar mapa">
+          <span class="zoom-icon">🔍</span>
+          <span class="plus-sign">+</span>
+        </button>
+        <button class="zoom-button zoom-out" (click)="zoomOut()" aria-label="Alejar mapa">
+          <span class="zoom-icon">🔍</span>
+          <span class="minus-sign">−</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Report Button -->
+    <button class="report-button" (click)="reportFlood()" [disabled]="isReporting" aria-label="Reportar inundación">
+      <span class="report-icon">🚨</span>
+      <span class="report-text">{{ isReporting ? 'Reportando...' : 'Reportar inundación' }}</span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,241 @@
+.dashboard-container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #C8D9E8 0%, #E8F1F8 100%);
+}
+
+// Header
+.header {
+  background: #1565C0;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative; // ← Agregado: Para posicionar el menú relativo al header
+}
+
+.back-button,
+.menu-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: white;
+}
+
+.back-icon {
+  font-size: 32px;
+  font-weight: 300;
+}
+
+.hamburger-icon {
+  font-size: 24px;
+}
+
+.header-title {
+  color: white;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+  flex: 1;
+}
+
+// Content
+.content {
+  padding: 20px;
+}
+
+// Climate Monitor Section
+.climate-monitor {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0 0 8px 0;
+  text-align: center;
+}
+
+.last-update {
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
+// Weather Cards
+.weather-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.weather-card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px 18px;
+  border-left: 5px solid;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.card-icon {
+  font-size: 20px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0;
+}
+
+.card-details {
+  padding-left: 30px;
+}
+
+.detail-text {
+  font-size: 14px;
+  color: #333;
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+// General Data Section
+.general-data-section {
+  margin-top: 30px;
+}
+
+.section-title-alt {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0 0 15px 0;
+  text-align: center;
+}
+
+.data-table {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.data-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid #E0E0E0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &.blue-row {
+    background: #B3D4F5;
+  }
+}
+
+.data-label {
+  font-size: 15px;
+  color: #1A1A1A;
+  font-weight: 500;
+}
+
+.data-value {
+  font-size: 15px;
+  color: #1A1A1A;
+  font-weight: 600;
+}
+
+// Responsive
+@media (max-width: 480px) {
+  .content {
+    padding: 15px;
+  }
+
+  .header-title {
+    font-size: 20px;
+  }
+
+  .card-title {
+    font-size: 15px;
+  }
+
+  .detail-text {
+    font-size: 13px;
+  }
+
+  .data-label,
+  .data-value {
+    font-size: 14px;
+  }
+}
+
+// Menú desplegable (igual al de Home: dropdown absoluto con slide, ahora del lado derecho)
+.dev-menu {
+  position: absolute;
+  top: 60px;
+  right: 20px; // ← Cambiado: De left a right para que aparezca del lado derecho
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 200px;
+  animation: slideDown 0.3s ease-out; // Animación de deslizamiento hacia abajo
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dev-menu-title {
+  font-size: 12px;
+  color: #666;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+.dev-menu-item {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+  background: #f5f5f5;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #e0e0e0;
+  }
+
+  &.active {
+    background: #5CB8E6;
+    color: white;
+    border-color: #4DADD9;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

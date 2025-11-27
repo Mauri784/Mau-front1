@@ -1,0 +1,219 @@
+.day-detail-container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #C8D9E8 0%, #E8F1F8 100%);
+  padding-bottom: 80px;
+}
+
+// Header
+.header {
+  background: #1565C0;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon {
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.header-title {
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  flex: 1;
+}
+
+// Content
+.content {
+  padding: 20px;
+}
+
+// Date Header
+.date-header {
+  margin-bottom: 20px;
+}
+
+.date-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0;
+}
+
+// Weather Cards
+.weather-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.weather-card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px 18px;
+  border-left: 5px solid;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.card-icon {
+  font-size: 20px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0;
+}
+
+.card-details {
+  padding-left: 30px;
+}
+
+.detail-text {
+  font-size: 14px;
+  color: #333;
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+// General Data Section
+.general-data-section {
+  margin-top: 20px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0 0 15px 0;
+  text-align: center;
+}
+
+.data-table {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.data-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid #E0E0E0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &.blue-row {
+    background: #B3D4F5;
+  }
+}
+
+.data-label {
+  font-size: 15px;
+  color: #1A1A1A;
+  font-weight: 500;
+}
+
+.data-value {
+  font-size: 15px;
+  color: #1A1A1A;
+  font-weight: 600;
+}
+
+// Download Button
+.download-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #4CAF50;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 100;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.download-icon {
+  font-size: 28px;
+  filter: brightness(0) invert(1);
+}
+
+// Responsive
+@media (max-width: 480px) {
+  .content {
+    padding: 15px;
+  }
+
+  .header-title {
+    font-size: 18px;
+  }
+
+  .date-title {
+    font-size: 18px;
+  }
+
+  .card-title {
+    font-size: 15px;
+  }
+
+  .detail-text {
+    font-size: 13px;
+  }
+
+  .data-label,
+  .data-value {
+    font-size: 14px;
+  }
+
+  .download-button {
+    width: 55px;
+    height: 55px;
+  }
+
+  .download-icon {
+    font-size: 24px;
+  }
+}

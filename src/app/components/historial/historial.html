@@ -1,0 +1,29 @@
+<div class="historial-container">
+  <!-- Header -->
+  <header class="header">
+    <button class="back-button" (click)="goBack()">
+      <span class="back-icon">‹</span>
+    </button>
+    <h1 class="header-title">Registro de días anteriores</h1>
+  </header>
+
+  <!-- Content -->
+  <div class="content">
+    <!-- Month Section -->
+    <div class="month-section">
+      <span class="calendar-icon">📅</span>
+      <h2 class="month-title">{{ currentMonth }}</h2>
+    </div>
+
+    <!-- Day Records List -->
+    <div class="days-list">
+      <button 
+        *ngFor="let day of dayRecords" 
+        class="day-card"
+        (click)="viewDayDetail(day)">
+        <span class="day-text">{{ day.date }}</span>
+        <span class="arrow-icon">›</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,133 @@
+.historial-container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #C8D9E8 0%, #E8F1F8 100%);
+}
+
+.header {
+  background: #1565C0;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon {
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.header-title {
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  flex: 1;
+}
+
+// Content
+.content {
+  padding: 20px;
+}
+
+// Month Section
+.month-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.calendar-icon {
+  font-size: 28px;
+}
+
+.month-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+}
+
+// Days List
+.days-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.day-card {
+  background: white;
+  border: 2px solid #D0D0D0;
+  border-radius: 15px;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: left;
+
+  &:hover {
+    background: #F5F5F5;
+    border-color: #1565C0;
+    transform: translateX(5px);
+  }
+
+  &:active {
+    transform: translateX(3px);
+  }
+}
+
+.day-text {
+  font-size: 16px;
+  color: #1A1A1A;
+  font-weight: 400;
+}
+
+.arrow-icon {
+  font-size: 28px;
+  color: #666;
+  font-weight: 300;
+  line-height: 1;
+}
+
+// Responsive
+@media (max-width: 480px) {
+  .content {
+    padding: 15px;
+  }
+
+  .header-title {
+    font-size: 18px;
+  }
+
+  .month-title {
+    font-size: 18px;
+  }
+
+  .day-card {
+    padding: 15px 18px;
+  }
+
+  .day-text {
+    font-size: 15px;
+  }
+
+  .arrow-icon {
+    font-size: 24px;
+  }
+}
