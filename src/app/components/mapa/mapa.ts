@@ -51,7 +51,7 @@ export class MapaComponent implements OnInit, AfterViewInit {
     sunny: 'Cielos despejados y temperaturas agradables.'
   };
 
-  private backendUrl = 'http://localhost:5001';
+  private backendUrl = 'https://sync-ap8q.onrender.com';
   private http = inject(HttpClient);
 
   constructor(private router: Router) {}
@@ -70,8 +70,7 @@ export class MapaComponent implements OnInit, AfterViewInit {
 
   private loadWeatherData(): void {
   this.http
-    .get<any[]>('https://weatheriadx-default-rtdb.firebaseio.com/json_data.json')
-    .subscribe({
+      .get<any[]>('https://weatheriadx-default-rtdb.firebaseio.com/json_data.json')    .subscribe({
       next: (data) => {
         if (Array.isArray(data) && data.length > 0) {
           const registro = data[data.length - 1]; 
