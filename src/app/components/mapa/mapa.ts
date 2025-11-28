@@ -231,13 +231,22 @@ export class MapaComponent implements OnInit, AfterViewInit {
     descripcion_clima: this.currentDescription
   };
 
-  this.http.post(`${this.backendUrl}/report_flood`, payload).subscribe({
-    next: () => {
-      alert('Reporte enviado.');
-    },
-    error: () => alert('No se pudo enviar el correo.'),
-    complete: () => (this.isReporting = false)
-  });
+  this.http.post<any>(`${this.backendUrl}/report_flood`, payload).subscribe({
+  next: (res) => {
+    if (res?.statusCode === 200) {
+      alert('Reporte enviado correctamente');
+    } else {
+      alert('El servidor respondió, pero con error');
+      console.warn(res);
+    }
+  },
+  error: (err) => {
+    alert('Error al enviar el reporte');
+    console.error(err);
+  },
+  complete: () => (this.isReporting = false)
+});
+
 
   if (this.selectedCoords) {
     const firebasePayload = {
